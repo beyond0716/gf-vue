@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/dist/style.css">
+</head>
+<body>
+<%- include('./common/header') -%>
+<div><%= link_to('hello world', '/something/here') %></div>
+<h1><%= '<b>转译输出</b>' %></h1>
+<h1><%- '<b>非转译输出</b>' %></h1>
+<h1><%= title %></h1>
+<p>Welcome to <%= title %></p>
+<p>Welcome to <%- '<b>hello world</b>' %></p>
+<br>
+<% if(names.length){ %>
+<ul>
+  <% names.forEach(function (name) { %>
+    <%# Notice how the single quotation mark is escaped in the output HTML %>
+    <li foo="<%= name %>"><%= name %></li>
+  <% }) %>
+</ul>
+<% } %>
+<%- include('./common/footer') -%>
+<br>
+<h1>Users</h1>
+<% function user(user) { %>
+<li><strong><%= user.name %></strong> is a <%= user.age %> year old <%= user.species %>.</li>
+<% } %>
+<ul>
+  <% users.map(user) %>
+</ul>
+</body>
+</html>
